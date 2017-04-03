@@ -582,7 +582,7 @@ NSString static *const kYTPlayerStaticProxyRegexPattern = @"^https://content.goo
           float time = [data floatValue];
           [self.delegate playerView:self didPlayTime:time];
       }
-      
+
   }
 }
 
@@ -600,7 +600,7 @@ NSString static *const kYTPlayerStaticProxyRegexPattern = @"^https://content.goo
       [ytRegex firstMatchInString:url.absoluteString
                         options:0
                           range:NSMakeRange(0, [url.absoluteString length])];
-    
+
   NSRegularExpression *adRegex =
       [NSRegularExpression regularExpressionWithPattern:kYTPlayerAdUrlRegexPattern
                                                 options:NSRegularExpressionCaseInsensitive
@@ -618,7 +618,7 @@ NSString static *const kYTPlayerStaticProxyRegexPattern = @"^https://content.goo
     [oauthRegex firstMatchInString:url.absoluteString
                            options:0
                              range:NSMakeRange(0, [url.absoluteString length])];
-    
+
   NSRegularExpression *staticProxyRegex =
     [NSRegularExpression regularExpressionWithPattern:kYTPlayerStaticProxyRegexPattern
                                               options:NSRegularExpressionCaseInsensitive
@@ -666,7 +666,7 @@ NSString static *const kYTPlayerStaticProxyRegexPattern = @"^https://content.goo
   if ([playerParams objectForKey:@"playerVars"]) {
     NSMutableDictionary *playerVars = [[NSMutableDictionary alloc] init];
     [playerVars addEntriesFromDictionary:[playerParams objectForKey:@"playerVars"]];
-      
+
     if (![playerVars objectForKey:@"origin"]) {
         self.originURL = [NSURL URLWithString:@"about:blank"];
     } else {
@@ -711,7 +711,8 @@ NSString static *const kYTPlayerStaticProxyRegexPattern = @"^https://content.goo
   NSString *embedHTML = [NSString stringWithFormat:embedHTMLTemplate, playerVarsJsonString];
   [self.webView loadHTMLString:embedHTML baseURL: self.originURL];
   [self.webView setDelegate:self];
-  self.webView.allowsInlineMediaPlayback = YES;
+  // self.webView.allowsInlineMediaPlayback = YES;
+  self.webView.allowsInlineMediaPlayback = NO;
   self.webView.mediaPlaybackRequiresUserAction = NO;
   return YES;
 }
