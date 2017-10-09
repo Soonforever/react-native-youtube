@@ -13,7 +13,8 @@ import ReactNative, {
   requireNativeComponent,
   NativeModules,
   NativeMethodsMixin,
-  NativeAppEventEmitter
+  NativeAppEventEmitter,
+  ViewPropTypes
 } from 'react-native';
 
 const RCTYouTube = requireNativeComponent('RCTYouTube', null);
@@ -28,7 +29,7 @@ let exitFullScreen = null;
 
 export default class YouTube extends Component {
   static propTypes = {
-    style: View.propTypes.style,
+    style: ViewPropTypes.style,
     videoId: PropTypes.string.isRequired,
     playsInline: PropTypes.bool,
     showinfo: PropTypes.bool,
